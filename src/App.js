@@ -1,33 +1,54 @@
+import { render } from "@testing-library/react";
+import React, {useState} from "react";
+import { isBlock } from "typescript";
 import "./style.css"
 
-function App() {
+const userInput = () => {
+
   return (
     <div>
     <h1>PAY YOUR DEBTS</h1>
-    <div className="wrap-three">
-      <div className="block block-one">
-        <h2>Title 01</h2>
-        <h3>Subtitle</h3>
-        <p>Something</p>
+
+    <div className="block block-one">
+      <h2>Loan</h2>
+
+      <form name= "userInput" method = "post">
+      <div class="grid-container">
+        <div class = "grid-item grid-item-1">
+          <label>Loan Amount</label>
+          <input type = "number" id = "loanAmount" name = "loanAmount" required/>
+        </div>
+
+        <div class = "grid-item grid-item-2">
+          <label>Loan Term</label>
+          <input type = "number" id = "loanTerm" name = "loanTerm" required/> 
+        </div>
       </div>
-      <div className="block block-two">
-        <h2>Title 02</h2>
-        <h3>Subtitle</h3>
-        <p>Something</p>
+
+      <div class = "gird-item grid-item-3">
+        <p1>Repayment type:</p1>
+       <select>
+        <option value = "PNI">Principal and Interest</option>
+        <option value = "interest">Interest Only</option>
+       </select>
       </div>
-      <div className="block block-three">
-        <h2>Title 03</h2>
-        <h3>Subtitle</h3>
-        <p>Something</p>
+
+      <div class = "gird-item grid-item-4">
+       <p1>OwnerOccupied or Investment purposes</p1>
+       <select>
+        <option value = "ownerOccupied">Owner Occupied</option>
+        <option value = "investment">Investment</option>
+       </select>
       </div>
+
+      <button type = "submit" value = "Submit"> Calculate </button>
+      </form>
+
+
     </div>
-    <div className="block block-04">
-      <h2>Title 04</h2>
-      <h3>Subtitle</h3>
-      <p>Something</p>
-    </div>
-    <div className="block block-05">
-      <h2>Title 05</h2>
+
+    <div className="block block-two">
+      <h2>Title 03</h2>
       <h3>Subtitle</h3>
       <p>Something</p>
     </div>
@@ -35,4 +56,4 @@ function App() {
   );
 }
 
-export default App;
+export default userInput;
