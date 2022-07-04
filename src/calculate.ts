@@ -1,30 +1,88 @@
 import { investPNI, investInterestOnly} from './loanData/investment.js';
 import { ownPNI, ownInterestOnly} from './loanData/ownerOccupied.js';
 import { getData, setData } from './datastore';
+import { isImportEqualsDeclaration } from 'typescript';
+import { useDebugValue } from 'react';
 
 export interface item {
     name: string;
     totalInterest: number;
+    totalPayed: number,
+    monthlyRepayment: number;
+    PNIRepayment?: number;
 }
 
-export function calcData (userData) {
+function monthlyLoanAmount(loanAmount: number, loanTerm: number, rate: number) {
+    return loanAmount * (((rate*(1+rate))**loanTerm) / (((1+rate)**loanTerm)-1));
+}
+
+export function calcData (userData) { 
     let dataArray: item[] = [];
+    if (userData.repaymentType = 'PNI') {
+        if (userData.investmentType = 'ownerOccupied') {
+            for (let i of ownPNI) {
+                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm, i.rate[0]);
+                dataArray.push ({
+                    name: i.type,
+                    totalInterest: monthly * 12 * userData.loanTerm - userData.loanAmount,
+                    totalPayed: monthly * 12 * userData.loanTerm,
+                    monthlyRepayment: monthly
+                });
+            }
+            return dataArray;
+        } else {
+            for (let i of investPNI) {
+                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm, i.rate[0]);
+                dataArray.push ({
+                    name: i.type,
+                    totalInterest: monthly * 12 * userData.loanTerm - userData.loanAmount,
+                    totalPayed: monthly * 12 * userData.loanTerm,
+                    monthlyRepayment: monthly
+                });
+            }
+        }
+    } else {
+        if (userData.investmentType = 'ownerOccupied') {
+            for (let i of ownInterestOnly) {
+                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - 5, i.rate[0]);
+                dataArray.push ({
+                    name: i.type,
+                    totalInterest: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0] - userData.loanAmount,
+                    totalPayed: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0],
+                    monthlyRepayment: monthly,
+                    PNIRepayment: userData.loanAmount * i.rate[0] / 12,
+                });
+            }
+            return dataArray;
+        } else {
+            for (let i of ownInterestOnly) {
+                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - 5, i.rate[0]);
+                dataArray.push ({
+                    name: i.type,
+                    totalInterest: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0] - userData.loanAmount,
+                    totalPayed: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0],
+                    monthlyRepayment: monthly,
+                    PNIRepayment: userData.loanAmount * i.rate[0] / 12,
+                });
+            }
+        }
+    }
 
     //placeholder items 
-    dataArray.push({
-        name: 'name',
-        totalInterest: 1234,
-    })
+    //ataArray.push({
+    //   name: 'name',
+    //   totalInterest: 1234,
+    //)
 
-    dataArray.push({
-        name: 'hyeahh money',
-        totalInterest: 131313,
-    })
+    //ataArray.push({
+    //   name: 'hyeahh money',
+    //   totalInterest: 131313,
+    //)
 
-    dataArray.push({
-        name: 'debt :(',
-        totalInterest: 1394,
-    })
+    //ataArray.push({
+    //   name: 'debt :(',
+    //   totalInterest: 1394,
+    //)
 
     return dataArray;
 
