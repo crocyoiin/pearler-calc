@@ -53,7 +53,7 @@ export function calcData (userData) {
                 });
             }
         } else {
-            for (let i of ownInterestOnly) {
+            for (let i of investInterestOnly) {
                 let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - 5, i.rate[0]);
                 dataArray.push ({
                     name: i.type,

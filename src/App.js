@@ -3,6 +3,7 @@ import React, {useState, useRef} from "react";
 import { isBlock, setSyntheticLeadingComments } from "typescript";
 import { sortData, viewData, viewAll } from "./compare.ts";
 import { calcData } from "./calculate.ts";
+import OutputWindow  from "./output";
 import "./style.css"
 
 const Page = () => {
@@ -76,9 +77,7 @@ const Page = () => {
     </div>
 
     <div className="block block-two">
-      <h2>Output</h2>
-      <h3>Subtitle</h3>
-      <p>Something</p>
+      <OutputWindow />
     </div>
   </div>
   );
