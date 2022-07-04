@@ -1,7 +1,8 @@
 import { render } from "@testing-library/react";
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import { isBlock, setSyntheticLeadingComments } from "typescript";
-import { sortData, viewData, viewAll } from "./compare";
+import { sortData, viewData, viewAll } from "./compare.ts";
+import { calcData } from "./calculate.ts";
 import "./style.css"
 
 const Page = () => {
@@ -10,9 +11,12 @@ const Page = () => {
     const[repaymentType, setrepaymentType] = useState('PNI');
     const[purpose, setpurpose] = useState('ownerOccupied');
 
-    const handleSubmit = (e) => {
+    const handleCalc = (e) => {
       e.preventDefault();
       const input =  { loanAmount, loanTerm, repaymentType, purpose };
+      let dataArray = calcData(input);
+      let sortedData = sortData(dataArray);
+      viewData(sortedData);
     }
 
   return (
@@ -22,7 +26,7 @@ const Page = () => {
     <div className="block block-one">
       <h2>Loan</h2>
 
-      <form onSubmit = {handleSubmit}>
+      <form>
       <div class="grid-container">
         <div class = "grid-item grid-item-1">
           <label>Loan Amount</label>
@@ -67,15 +71,8 @@ const Page = () => {
        </select>
       </div>
 
-      <button type = "submit"> Calculate </button>
+      <button onClick={handleCalc}> Calculate </button>
       </form>
-
-      <p>{loanAmount}</p>
-      <p>{loanTerm}</p>
-      <p>{repaymentType}</p>
-      <p>{purpose}</p>
-
-
     </div>
 
     <div className="block block-two">
@@ -88,4 +85,3 @@ const Page = () => {
 }
 
 export default Page;
-//export {input};

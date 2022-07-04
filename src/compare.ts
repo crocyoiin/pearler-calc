@@ -8,9 +8,8 @@ import { item } from "./calculate";
  * @returns {*} sortedArray
  */
 
-function sortData(dataArray: item[]) {
-
-	let sortedArray = dataArray;
+export function sortData(dataArray: item[]) {
+	let sortedArray: item[] = dataArray;
 	sortedArray.sort(function(a,b){
 		if (a.name.toLowerCase() < b.name.toLowerCase()) {
 				return -1;
@@ -33,13 +32,18 @@ function sortData(dataArray: item[]) {
  * @params sortedData array
  * @returns none
  */
-function viewData(sortedArray: item[]) {
+export function viewData(sortedArray: item[]) {
 
     console.log(`The best option is ${sortedArray[0].name}, with a total interest charged of $${sortedArray[0].totalInterest}.`);
 
-    for (let i = 1; i < sortedArray.length; i++) {
-			let percDiff = (sortedArray[i].totalInterest / sortedArray[0].totalInterest) * 100 - sortedArray[0].totalInterest;
-			console.log(`${sortedArray[i].name} is ${percDiff}% more expensive, with a total Interest charged of $${sortedArray[i].totalInterest}.`);
+		let max = 5;
+		if (sortedArray.length < 5) {
+			max = sortedArray.length;
+		}
+
+    for (let i = 1; i < max; i++) {
+			let percDiff = Math.round(((sortedArray[i].totalInterest / sortedArray[0].totalInterest) - 1) * 100);
+			console.log(`${sortedArray[i].name} is ${percDiff}% more expensive, with a total interest charged of $${sortedArray[i].totalInterest}.`);
     }
 
 }
@@ -50,7 +54,7 @@ function viewData(sortedArray: item[]) {
  * @param sortedArray 
  * @return none
  */
-function viewAll(sortedArray) {
+export function viewAll(sortedArray) {
 	let i = 1;
 	console.log('Rank || Repayment Type || Total Interest Charged');
 	console.log();

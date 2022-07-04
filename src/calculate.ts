@@ -1,5 +1,5 @@
-import { investPNI, investInterestOnly} from './loanData/investment';
-import { ownPNI, ownInterestOnly} from './loanData/ownerOccupied';
+import { investPNI, investInterestOnly} from './loanData/investment.js';
+import { ownPNI, ownInterestOnly} from './loanData/ownerOccupied.js';
 import { getData, setData } from './datastore';
 
 export interface item {
@@ -7,9 +7,29 @@ export interface item {
     totalInterest: number;
 }
 
-export function calculate (userData) {
+export function calcData (userData) {
     let dataArray: item[] = [];
 
+    //placeholder items 
+    dataArray.push({
+        name: 'name',
+        totalInterest: 1234,
+    })
+
+    dataArray.push({
+        name: 'hyeahh money',
+        totalInterest: 131313,
+    })
+
+    dataArray.push({
+        name: 'debt :(',
+        totalInterest: 1394,
+    })
+
+    return dataArray;
+
+    /*
+    //lol idk how switch statements work
     const method = `${userData.repaymentType}  ${userData.purpose}`;
     let rates;
 
@@ -26,16 +46,8 @@ export function calculate (userData) {
         case 'interest investment':
             rates = investInterestOnly;
             break;
-        default:
-            return {error : 'error'};
     }
+    */
 
     //do some math and push into dataArray???
-    dataArray.push({
-        name: 'name',
-        totalInterest: 1234,
-    })
-
-    return dataArray;
-
 }
