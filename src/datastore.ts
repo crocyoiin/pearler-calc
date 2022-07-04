@@ -3,10 +3,6 @@ datastore.ts
 stores data of current session
 */
 
-let userInput = {
-
-}
-
 let dataCalc = [
 
 ]
@@ -21,13 +17,5 @@ export function setData(newData) {
 
 export function clear() {
     dataCalc = [];
-    userInput = {};
 }
 
-export function getInput() {
-    return userInput;
-}
-
-export function setInput(newInput) {
-    userInput = newInput;
-}

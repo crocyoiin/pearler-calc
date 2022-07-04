@@ -90,6 +90,10 @@ p {
     margin: 60px;
 }
 
+.block-one > button:hover {
+    background-color: orange;
+}
+
 .block-two {
     width: 600px;
     height:500px;
