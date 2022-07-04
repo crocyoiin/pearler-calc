@@ -29,7 +29,6 @@ export function calcData (userData) {
                     monthlyRepayment: monthly
                 });
             }
-            return dataArray;
         } else {
             for (let i of investPNI) {
                 let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm, i.rate[0]);
@@ -53,7 +52,6 @@ export function calcData (userData) {
                     PNIRepayment: userData.loanAmount * i.rate[0] / 12,
                 });
             }
-            return dataArray;
         } else {
             for (let i of ownInterestOnly) {
                 let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - 5, i.rate[0]);
@@ -67,22 +65,6 @@ export function calcData (userData) {
             }
         }
     }
-
-    //placeholder items 
-    //ataArray.push({
-    //   name: 'name',
-    //   totalInterest: 1234,
-    //)
-
-    //ataArray.push({
-    //   name: 'hyeahh money',
-    //   totalInterest: 131313,
-    //)
-
-    //ataArray.push({
-    //   name: 'debt :(',
-    //   totalInterest: 1394,
-    //)
 
     return dataArray;
 
