@@ -34,6 +34,8 @@ export function sortData(dataArray: item[]) {
  */
 export function viewData(sortedArray: item[]) {
 
+	let outputArray: string[] = [];
+	outputArray.push(`The best option is ${sortedArray[0].name}, with a total interest charged of $${Math.round(sortedArray[0].totalInterest)}.`);
     console.log(`The best option is ${sortedArray[0].name}, with a total interest charged of $${Math.round(sortedArray[0].totalInterest)}.`);
 
 		let max = 5;
@@ -43,8 +45,15 @@ export function viewData(sortedArray: item[]) {
 
     for (let i = 1; i < max; i++) {
 			let percDiff = Math.round(((sortedArray[i].totalInterest / sortedArray[0].totalInterest) - 1) * 100);
+			outputArray.push(`${sortedArray[i].name} is ${percDiff}% more expensive, with a total interest charged of $${Math.round(sortedArray[i].totalInterest)}.`);
 			console.log(`${sortedArray[i].name} is ${percDiff}% more expensive, with a total interest charged of $${Math.round(sortedArray[i].totalInterest)}.`);
     }
+
+	if (outputArray.length == 0) {
+		outputArray.push(" ");
+	}
+
+	setData(outputArray);
 
 }
 
