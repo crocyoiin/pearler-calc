@@ -4,9 +4,9 @@ import "./outputTabs.css"
 
 const OutputWindow = () => {
 
-	const itemList = getData();
+	let itemList = getData();
 
-	const renderList = itemList.map((item, index) => 
+	let renderList = itemList.map((item, index) => 
 	<p key={index}>{item}</p>
   	);
 
@@ -26,8 +26,6 @@ const OutputWindow = () => {
 				<p>table containing all options goes heree</p>
 			</TabPanel>
 		</Tabs>
-
-
 	);
 }
 

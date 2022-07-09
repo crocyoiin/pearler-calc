@@ -68,8 +68,11 @@ export function viewAll(sortedArray) {
 	console.log('Rank || Repayment Type || Total Interest Charged');
 	console.log();
 
+	let outputArray: string[] = [];
+
 	for (const item of sortedArray) {
 		console.log(`${i}. ${item.name}: $${item.totalInterest}`);
+		outputArray.push(`${i}. ${item.name}: $${item.totalInterest}`);
 		i++;
-	}
+	}	
 }

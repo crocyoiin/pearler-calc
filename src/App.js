@@ -12,12 +12,17 @@ const Page = () => {
     const[repaymentType, setrepaymentType] = useState('PNI');
     const[purpose, setpurpose] = useState('ownerOccupied');
 
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
+
     const handleCalc = (e) => {
       e.preventDefault();
       const input =  { loanAmount, loanTerm, repaymentType, purpose };
       let dataArray = calcData(input);
       let sortedData = sortData(dataArray);
       viewData(sortedData);
+      viewAll(sortedData);
+      forceUpdate();
     }
 
   return (
@@ -28,8 +33,8 @@ const Page = () => {
       <h2>Loan</h2>
 
       <form>
-      <div class="grid-container">
-        <div class = "grid-item grid-item-1">
+      <div className="grid-container">
+        <div className = "grid-item grid-item-1">
           <label>Loan Amount</label>
           <input
            type = "number"
@@ -39,7 +44,7 @@ const Page = () => {
            />
         </div>
 
-        <div class = "grid-item grid-item-2">
+        <div className = "grid-item grid-item-2">
           <label>Loan Term</label>
           <input 
           type = "number" 
@@ -50,7 +55,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div class = "gird-item grid-item-3">
+      <div className = "gird-item grid-item-3">
         <p1>Repayment type:</p1>
        <select
         value = {repaymentType}
@@ -61,7 +66,7 @@ const Page = () => {
        </select>
       </div>
 
-      <div class = "gird-item grid-item-4">
+      <div className = "gird-item grid-item-4">
        <p1>OwnerOccupied or Investment purposes</p1>
        <select
         value = {purpose}
@@ -77,7 +82,9 @@ const Page = () => {
     </div>
 
     <div className="block block-two">
-      <OutputWindow />
+
+     <OutputWindow />
+      
     </div>
   </div>
   );
