@@ -72,27 +72,4 @@ export function calcData (userData) {
     }
 
     return dataArray;
-
-    /*
-    //lol idk how switch statements work
-    const method = `${userData.repaymentType}  ${userData.purpose}`;
-    let rates;
-
-    switch (method) {
-        case 'PNI ownerOccupied' :
-            rates = ownPNI;
-            break;
-        case 'interest ownerOccupied' :
-            rates = ownInterestOnly;
-            break;
-        case 'PNI investment':
-            rates = investPNI;
-            break;
-        case 'interest investment':
-            rates = investInterestOnly;
-            break;
-    }
-    */
-
-    //do some math and push into dataArray???
 }
