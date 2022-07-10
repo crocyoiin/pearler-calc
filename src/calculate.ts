@@ -46,24 +46,24 @@ export function calcData (userData) {
     } else {
         if (userData.purpose == 'ownerOccupied') {
             for (let i of ownInterestOnly) {
-                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - 5, i.rate[0] / 100);
-                console.log(`INTEREST OWNER`);
+                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - i.period, i.rate[0] / 100 / 12);
+                console.log(`INTEREST OWNER ${monthly}`);
                 dataArray.push ({
                     name: i.type,
-                    totalInterest: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0] / 100 - userData.loanAmount,
-                    totalPayed: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0] / 100,
+                    totalInterest: monthly * 12 * (userData.loanTerm - i.period) + i.period * userData.loanAmount * i.rate[0] / 100 - userData.loanAmount,
+                    totalPayed: monthly * 12 * (userData.loanTerm - i.period) + i.period * userData.loanAmount * i.rate[0] / 100,
                     monthlyRepayment: monthly,
                     PNIRepayment: userData.loanAmount * i.rate[0] / 100 / 12,
                 });
             }
         } else {
             for (let i of investInterestOnly) {
-                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - 5, i.rate[0] / 100);
-                console.log(`INTEREST INVEST`);
+                let monthly = monthlyLoanAmount(userData.loanAmount, userData.loanTerm - i.period, i.rate[0] / 100 / 12);
+                console.log(`INTEREST INVEST ${monthly}`);
                 dataArray.push ({
                     name: i.type,
-                    totalInterest: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0] / 100 - userData.loanAmount,
-                    totalPayed: monthly * 12 * (userData.loanTerm - 5) + userData.loanAmount * i.rate[0] / 100,
+                    totalInterest: monthly * 12 * (userData.loanTerm - i.period) + i.period * userData.loanAmount * i.rate[0] / 100 - userData.loanAmount,
+                    totalPayed: monthly * 12 * (userData.loanTerm - i.period) + i.period * userData.loanAmount * i.rate[0] / 100,
                     monthlyRepayment: monthly,
                     PNIRepayment: userData.loanAmount * i.rate[0] / 100 / 12,
                 });

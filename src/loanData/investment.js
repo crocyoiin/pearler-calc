@@ -92,6 +92,7 @@ export let investInterestOnly = [
         deposit: 30,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 5,
     },
     { 
         type: '3.75% p.a. Extra Home Loan 20% deposit',
@@ -99,6 +100,7 @@ export let investInterestOnly = [
         deposit: 20,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 5,
     },
     { 
         type: '4.85% p.a. Extra Home Loan 10% deposit',
@@ -106,6 +108,7 @@ export let investInterestOnly = [
         deposit: 10,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 5,
     },
     { 
         type: investVarRateI[0] + '% p.a. Standard Variable Rate Home Loan',
@@ -113,6 +116,7 @@ export let investInterestOnly = [
         deposit: 0,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 5,
     },
     {
         type: '5.95% p.a. 1 Year Fixed Rate Home Loan',
@@ -120,6 +124,7 @@ export let investInterestOnly = [
         deposit: 0,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 1,
     },
     {
         type: '6.34% p.a. 2 Year Fixed Rate Home Loan',
@@ -127,6 +132,7 @@ export let investInterestOnly = [
         deposit: 0,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 2,
     },
     {
         type: '6.84% p.a. 3 Year Fixed Rate Home Loan',
@@ -134,6 +140,7 @@ export let investInterestOnly = [
         deposit: 0,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 3,
     },
     {
         type: '7.04% p.a. 4 Year Fixed Rate Home Loan',
@@ -141,6 +148,7 @@ export let investInterestOnly = [
         deposit: 0,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 4,
     },
     {
         type: '7.14% p.a. 5 Year Fixed Rate Home Loan',
@@ -148,5 +156,6 @@ export let investInterestOnly = [
         deposit: 0,
         minLoan: ABSMIN,
         maxLoan: ABSMAX,
+        period: 5,
     },
 ]
