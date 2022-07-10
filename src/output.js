@@ -1,14 +1,20 @@
-import { getData, setData } from "./datastore";
+import { getData, setData } from "./datastore.ts";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "./outputTabs.css"
 
 const OutputWindow = () => {
 
-	let itemList = getData();
+	let itemList = getData().top;
 
 	let renderList = itemList.map((item, index) => 
 	<p key={index}>{item}</p>
   	);
+
+	let allItems = getData().all;
+
+	let renderAll = allItems.map((item, index) =>
+	<p key={index}>{item}</p>
+	);
 
 	return(
 		<Tabs>
@@ -23,7 +29,7 @@ const OutputWindow = () => {
 			</TabPanel>
 			<TabPanel>
 				<h2>All Options</h2>
-				<p>table containing all options goes heree</p>
+				{renderAll}
 			</TabPanel>
 		</Tabs>
 	);

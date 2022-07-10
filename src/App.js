@@ -1,9 +1,10 @@
 import { render } from "@testing-library/react";
 import React, {useState, useRef} from "react";
 import { isBlock, setSyntheticLeadingComments } from "typescript";
-import { sortData, viewData, viewAll } from "./compare.ts";
+import { sortData, viewData, viewAll } from "./compare";
 import { calcData } from "./calculate.ts";
 import OutputWindow  from "./output";
+import { clear } from "./datastore.ts";
 import "./style.css"
 
 const Page = () => {
@@ -18,6 +19,7 @@ const Page = () => {
     const handleCalc = (e) => {
       e.preventDefault();
       const input =  { loanAmount, loanTerm, repaymentType, purpose };
+      clear();
       let dataArray = calcData(input);
       let sortedData = sortData(dataArray);
       viewData(sortedData);

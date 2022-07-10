@@ -1,5 +1,4 @@
-import { getData, setData } from "./datastore";
-import { item } from "./calculate";
+import { getData, setData } from "./datastore.ts";
 
 /**
  * sortData
@@ -8,8 +7,8 @@ import { item } from "./calculate";
  * @returns {*} sortedArray
  */
 
-export function sortData(dataArray: item[]) {
-	let sortedArray: item[] = dataArray;
+export function sortData(dataArray) {
+	let sortedArray = dataArray;
 	sortedArray.sort(function(a,b){
 		if (a.name.toLowerCase() < b.name.toLowerCase()) {
 				return -1;
@@ -32,10 +31,10 @@ export function sortData(dataArray: item[]) {
  * @params sortedData array
  * @returns none
  */
-export function viewData(sortedArray: item[]) {
+export function viewData(sortedArray) {
 
-	let outputArray: string[] = [];
-	outputArray.push(`The best option is ${sortedArray[0].name}, with a total interest charged of $${Math.round(sortedArray[0].totalInterest)}.`);
+	let data = getData();
+	data.top.push(`The best option is ${sortedArray[0].name}, with a total interest charged of $${Math.round(sortedArray[0].totalInterest)}.`);
     console.log(`The best option is ${sortedArray[0].name}, with a total interest charged of $${Math.round(sortedArray[0].totalInterest)}.`);
 
 		let max = 5;
@@ -45,15 +44,16 @@ export function viewData(sortedArray: item[]) {
 
     for (let i = 1; i < max; i++) {
 			let percDiff = Math.round(((sortedArray[i].totalInterest / sortedArray[0].totalInterest) - 1) * 100);
-			outputArray.push(`${sortedArray[i].name} is ${percDiff}% more expensive, with a total interest charged of $${Math.round(sortedArray[i].totalInterest)}.`);
+			data.top.push(`${sortedArray[i].name} is ${percDiff}% more expensive, with a total interest charged of $${Math.round(sortedArray[i].totalInterest)}.`);
 			console.log(`${sortedArray[i].name} is ${percDiff}% more expensive, with a total interest charged of $${Math.round(sortedArray[i].totalInterest)}.`);
     }
 
-	if (outputArray.length == 0) {
-		outputArray.push(" ");
+	if (data.top.length == 0) {
+		data.top.push(" ");
 	}
+	
 
-	setData(outputArray);
+	setData(data);
 
 }
 
@@ -68,11 +68,13 @@ export function viewAll(sortedArray) {
 	console.log('Rank || Repayment Type || Total Interest Charged');
 	console.log();
 
-	let outputArray: string[] = [];
+	let data = getData();
 
 	for (const item of sortedArray) {
 		console.log(`${i}. ${item.name}: $${item.totalInterest}`);
-		outputArray.push(`${i}. ${item.name}: $${item.totalInterest}`);
+		data.all.push(`${i}. ${item.name}: $${Math.round(item.totalInterest)}`);
 		i++;
 	}	
+
+	setData(data);
 }
